@@ -54,7 +54,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.kotlinx.serialization.json)
+    api(libs.kotlinx.serialization.json)
 
     api (libs.androidx.datastore.preferences)
     api(libs.kotlinx.coroutines.core)
@@ -63,11 +63,8 @@ dependencies {
     api(libs.lottie)
     api(libs.lottie.compose)
 
-    api(libs.bundles.retrofit)
-
     // custom modules
     api(project(":uikit"))
-
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -7,3 +7,27 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 object HomePage
+
+@Serializable
+object Profile
+
+@Serializable
+object Premium
+
+@Serializable
+object Chat
+
+@Serializable
+object Community
+
+@Serializable
+object Bookmarks
+
+@Serializable
+object List
+
+@Serializable
+object Spaces
+
+@Serializable
+object FollowUs

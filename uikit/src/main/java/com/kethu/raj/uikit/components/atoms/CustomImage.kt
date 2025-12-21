@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import coil.compose.AsyncImage
 import com.kethu.raj.uikit.components.atoms.properties.ImageProperties
 
 
@@ -23,14 +24,14 @@ fun CustomImage(
                 colorFilter = colorFilter
             )
         } ?: run {
-           /* AsyncImage(
+            AsyncImage(
                 modifier = modifier,
                 model = src,
                 contentDescription = contentDesc,
                 contentScale = contentScale,
                 alpha = alpha,
                 colorFilter = colorFilter
-            )*/
+            )
         }
     }
 }
