@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="com.kethu.raj.AuthActivity"
+            android:exported="false"
+            android:theme="@style/Theme.HiltAndroidSample" />
+    </application>
+
+</manifest>
