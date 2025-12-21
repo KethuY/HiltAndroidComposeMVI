@@ -39,7 +39,7 @@ object Dimens {
     const val SizeButtonHeightPrimary = 54
     const val SizeButtonHeightSecondary = 54
     const val SizeButtonHeightTertiary = 54
-    const val AdibDialogCornerRadius = 4
-    const val Size1 = 1
+
+    const val WIDTH_250 = 250
 
 }

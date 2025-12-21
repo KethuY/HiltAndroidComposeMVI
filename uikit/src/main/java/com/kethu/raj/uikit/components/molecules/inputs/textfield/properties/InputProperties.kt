@@ -1,5 +1,6 @@
 package com.kethu.raj.uikit.components.molecules.inputs.textfield.properties
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.graphics.Color
@@ -26,6 +27,7 @@ interface InputProperties : TextFieldProperties {
     val isBorderInputField: Boolean get() = false
     val shape: Shape get() = RoundedCornerShape(SizeRadiusXSmall.dp)
     val height: Dp
+    val horizontalArrangement: Arrangement.Horizontal
     override val backgroundColor: Color get() = Color.White
     override val textStyle: TextStyle get() = Style16BodyRegular
     override val keyboardOptions: KeyboardOptions get() = KeyboardOptions.Default

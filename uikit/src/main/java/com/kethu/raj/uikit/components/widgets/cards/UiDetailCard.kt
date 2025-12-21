@@ -1,5 +1,6 @@
 package com.kethu.raj.uikit.components.widgets.cards
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.kethu.raj.uikit.components.atoms.CustomImage
@@ -33,7 +35,8 @@ import com.kethu.uikit.components.atoms.uidatamodels.TextUiDataModel
 @Composable
 fun UiDetailCard(
     properties: DetailCardProperties,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onItemClicked: (DetailCardProperties) -> Unit
 ) {
     with(properties) {
         Card(
@@ -60,31 +63,41 @@ fun UiDetailCard(
                         properties = ImageUiDataModel(src = trailingIcon)
                     )
                 }
-                Spacer(Modifier.height(8.dp))
-                Box {
-                    CustomImage(
-                        modifier = Modifier.fillMaxWidth(),
-                        properties = ImageUiDataModel(
-                            src = imageUrl,
-                            contentScale = ContentScale.FillBounds
+                if (!imageUrl.isNullOrBlank()) {
+                    Spacer(Modifier.height(8.dp))
+                    Box(modifier = Modifier.pointerInput(Unit) {
+                        detectTapGestures(
+                            onTap = {
+                                onItemClicked.invoke(properties)
+                            }
                         )
-                    )
-                    if (shareIcons.isNotEmpty()) {
-                        VerticaItems(
-                            modifier = Modifier
-                                .padding(horizontal = 12.dp, vertical = 12.dp)
-                                .align(Alignment.BottomEnd), shareIcons
+                    }) {
+                        CustomImage(
+                            modifier = Modifier.fillMaxWidth(),
+                            properties = ImageUiDataModel(
+                                src = imageUrl,
+                                contentScale = ContentScale.FillBounds
+                            )
                         )
+                        if (shareIcons.isNotEmpty()) {
+                            VerticaItems(
+                                modifier = Modifier
+                                    .padding(horizontal = 12.dp, vertical = 12.dp)
+                                    .align(Alignment.BottomEnd), shareIcons
+                            )
+                        }
                     }
-
                 }
-                Spacer(Modifier.height(8.dp))
-                CustomText(
-                    properties = TextUiDataModel(
-                        text = description,
-                        textStyle = Style14CaptionRegular
+                if (!description.isBlank()) {
+                    Spacer(Modifier.height(8.dp))
+                    CustomText(
+                        properties = TextUiDataModel(
+                            text = description,
+                            textStyle = Style14CaptionRegular
+                        )
                     )
-                )
+                }
+
                 Row(
                     modifier = Modifier
                         .padding(top = 8.dp)

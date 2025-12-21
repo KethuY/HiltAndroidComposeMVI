@@ -26,12 +26,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.takeOrElse
 import com.kethu.raj.uikit.components.atoms.CustomImage
 import com.kethu.raj.uikit.components.atoms.CustomText
-import com.kethu.uikit.components.atoms.uidatamodels.TextUiDataModel
 import com.kethu.raj.uikit.components.atoms.uidatamodels.ImageUiDataModel
 import com.kethu.raj.uikit.components.molecules.buttons.properties.ButtonProperties
+import com.kethu.raj.uikit.components.molecules.buttons.properties.ButtonType
 import com.kethu.raj.uikit.ui.theme.LocalAppUiTheme
+import com.kethu.raj.uikit.ui.theme.Orange
+import com.kethu.uikit.components.atoms.uidatamodels.TextUiDataModel
 import kotlinx.coroutines.delay
 
 /**
@@ -47,12 +50,13 @@ fun UiButton(
 ) {
     with(properties) {
         val tweenAnimation: TweenSpec<Color> = tween(300)
-        val (textColor, iconTintColor) = Pair(
-            colors.textColor.takeIf { it != Color.Unspecified }
-                ?: LocalAppUiTheme.current.textColor,
-            colors.iconTintColor.takeIf { it != Color.Unspecified }
-                ?: LocalAppUiTheme.current.tintColor
 
+        val textThemeColor =
+            if (type == ButtonType.SECONDARY) LocalAppUiTheme.current.secondaryTextColor else LocalAppUiTheme.current.textColor
+
+        val (textColor, iconTintColor) = Pair(
+            colors.textColor.takeOrElse { textThemeColor},
+            colors.iconTintColor.takeOrElse { LocalAppUiTheme.current.tintColor }
         )
         var isClicked by remember { mutableStateOf(false) }
         val toggleTextColor = animateColorAsState(
@@ -74,8 +78,9 @@ fun UiButton(
         }
         val boxModifier = modifier.buttonModifier(
             properties = properties,
-            borderColor = toggleBorderColor,
+            borderColor = toggleBorderColor.takeOrElse { LocalAppUiTheme.current.backgroundColor },
             onClick = { isClicked = true },
+            backgroundColor = colors.backgroundColor.takeOrElse { LocalAppUiTheme.current.backgroundColor },
             interactionSource = remember { MutableInteractionSource() }
         )
         Box(
@@ -86,15 +91,18 @@ fun UiButton(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                CustomImage(
-                    modifier = Modifier
-                        .padding(end = iconEndPadding)
-                        .size(leadingIconSize),
-                    properties = ImageUiDataModel(
-                        src = leadingIcon,
-                        colorFilter = ColorFilter.tint(toggleIconColor.value)
+                leadingIcon?.let {
+                    CustomImage(
+                        modifier = Modifier
+                            .padding(end = iconEndPadding)
+                            .size(leadingIconSize),
+                        properties = ImageUiDataModel(
+                            src = leadingIcon,
+                            colorFilter = ColorFilter.tint(toggleIconColor.value)
+                        )
                     )
-                )
+                }
+
                 CustomText(
                     properties = TextUiDataModel(
                         text = text,
@@ -108,6 +116,7 @@ fun UiButton(
 
 private fun Modifier.buttonModifier(
     properties: ButtonProperties,
+    backgroundColor: Color,
     borderColor: Color,
     onClick: () -> Unit,
     interactionSource: MutableInteractionSource
@@ -116,7 +125,7 @@ private fun Modifier.buttonModifier(
         .height(height)
         .shadow(elevation, shape)
         .clip(shape)
-        .background(colors.backgroundColor)
+        .background(backgroundColor)
         .border(borderWidth, borderColor, shape)
         .clickable(
             interactionSource = interactionSource,

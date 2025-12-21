@@ -27,6 +27,6 @@ interface TextFieldProperties : BaseView {
     val enabled: Boolean get() = true
     val readOnly: Boolean get() = false
     val keyboardOptions: KeyboardOptions
-    val keyboardActions: KeyboardActions get() = KeyboardActions.Companion.Default
+    val keyboardActions: KeyboardActions get() = KeyboardActions.Default
     val visualTransformation: VisualTransformation get() = VisualTransformation.Companion.None
 }

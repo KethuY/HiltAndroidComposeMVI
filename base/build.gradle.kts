@@ -59,12 +59,14 @@ dependencies {
     api (libs.androidx.datastore.preferences)
     api(libs.kotlinx.coroutines.core)
     api(libs.kotlinx.coroutines.android)
+    api(libs.google.gson)
 
-    api(libs.lottie)
-    api(libs.lottie.compose)
+    api(libs.bundles.lottie.anim)
 
     // custom modules
     api(project(":uikit"))
+    api(project(":networkmodule"))
+    //api(libs.timber)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

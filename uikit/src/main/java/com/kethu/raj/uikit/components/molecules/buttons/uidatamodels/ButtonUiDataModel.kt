@@ -12,12 +12,11 @@ import androidx.compose.ui.unit.dp
 import com.kethu.raj.uikit.components.molecules.buttons.properties.ButtonColors
 import com.kethu.raj.uikit.components.molecules.buttons.properties.ButtonProperties
 import com.kethu.raj.uikit.components.molecules.buttons.properties.ButtonType
-import com.kethu.raj.uikit.ui.theme.Style16BodyMedium
-import com.kethu.raj.uikit.ui.theme.ColorPrimitiveWhite
 import com.kethu.raj.uikit.ui.theme.Dimens.SizeSpacingLarge
 import com.kethu.raj.uikit.ui.theme.Dimens.SizeSpacingMedium
 import com.kethu.raj.uikit.ui.theme.Dimens.SizeSpacingSmall
 import com.kethu.raj.uikit.ui.theme.Orange
+import com.kethu.raj.uikit.ui.theme.Style16BodyMedium
 import com.kethu.raj.uikit.utils.ShapeRoundedMedium
 
 /**
@@ -45,18 +44,11 @@ data class ButtonUiDataModel(
     ),
 ) : ButtonProperties
 
-private fun getPrimaryButtonColors(type: ButtonType) = if (ButtonType.PRIMARY == type)
-    ButtonColors(
-        backgroundColor = Orange,
-        textColor = ColorPrimitiveWhite
-    ) else {
-    ButtonColors(
-        backgroundColor = Color.Transparent,
-        borderColor = Orange,
-        textColor = Orange
-    )
+private fun getPrimaryButtonColors(type: ButtonType) = if (ButtonType.SECONDARY == type)
+    ButtonColors(backgroundColor = Color.Transparent)
+else
+    ButtonColors()
 
-}
 
 private fun getRippleEnabled(type: ButtonType) =
     type != ButtonType.SECONDARY

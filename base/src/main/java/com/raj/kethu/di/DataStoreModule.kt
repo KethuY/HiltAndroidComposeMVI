@@ -12,6 +12,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @Module
 @InstallIn(ViewModelComponent::class)
 class DataStoreModule {
+
     @Provides
     fun provideDataStoreRepository(@ApplicationContext context: Context): DataStoreRepository =
         DataStoreRepositoryImpl(context)

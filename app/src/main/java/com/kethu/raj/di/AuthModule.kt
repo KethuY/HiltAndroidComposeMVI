@@ -1,9 +1,8 @@
 package com.kethu.raj.di
 
 import android.content.Context
-import com.kethu.raj.provider.AppDataProvider
+import com.raj.kethu.provider.AppDataProvider
 import com.kethu.raj.providerimpl.AppDataProviderImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +18,6 @@ import javax.inject.Singleton
     @Provides
     @Singleton
     fun provideAppDataProvider(
-        @ApplicationContext appContext: Context
-    ): AppDataProvider = AppDataProviderImpl(appContext)
+    ): AppDataProvider = AppDataProviderImpl()
 
 }

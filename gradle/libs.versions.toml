@@ -22,6 +22,8 @@ lottieCompose = "6.0.0"
 retrofit = "2.9.0"
 okhttp = "2.7.5"
 okhttp3 = "4.9.3"
+gson = "2.8.5"
+timber = "5.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -61,8 +63,8 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
 scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit" }
 okhttp = { group = "com.squareup.okhttp", name = "okhttp", version.ref = "okhttp" }
-
-
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -76,5 +78,6 @@ kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization"
 
 [bundles]
 retrofit = ["retrofit-version", "gsonConverter", "logging-interceptor", "okhttp3", "scalars", "okhttp"]
+lottie-anim = ["lottie", "lottie-compose"]
 
 

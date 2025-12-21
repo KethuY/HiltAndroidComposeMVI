@@ -12,5 +12,6 @@
     <string name="auth_hint_phone">960000000000</string>
     <string name="auth_new_user">New User</string>
     <string name="auth_sign_up">Sign Up</string>
-    <string name="auth_new_user_sign_up">New User? <b>Sign Up</b></string>
+    <string name="auth_invalid_credentials">Invalid Credentials</string>
+    <string name="auth_enter_all_fields">Enter all fields</string>
 </resources>

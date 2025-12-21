@@ -3,5 +3,11 @@
 
     <style name="Theme.HiltAndroidSample" parent="android:Theme.Material.Light.NoActionBar" >
         <item name="android:windowSplashScreenBackground">#FF8F00</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="Theme.AppTheme" parent="android:Theme.Material.Light.NoActionBar" >
+        <item name="android:windowSplashScreenBackground">#00000000</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 </resources>

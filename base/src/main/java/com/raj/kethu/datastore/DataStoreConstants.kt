@@ -12,4 +12,5 @@ object DataStoreConstants {
     val IS_NEW_USER = booleanPreferencesKey("is_new_user")
     val USER_NAME = stringPreferencesKey("user_name")
     val USER_EMAIL = stringPreferencesKey("user_email")
+    val THEME = stringPreferencesKey("theme")
 }

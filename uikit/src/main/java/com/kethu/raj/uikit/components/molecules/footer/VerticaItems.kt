@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -21,13 +22,14 @@ fun VerticaItems(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         icons.forEach { iv ->
             CustomImage(
                 modifier = Modifier
                     .size(24.dp)
-                    .pointerInput(Unit) {
+                    .pointerInput(onClick) {
                         detectTapGestures(onTap = {
                             onClick.invoke(iv)
                         })

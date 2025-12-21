@@ -5,7 +5,7 @@
         <activity
             android:name="com.kethu.raj.AuthActivity"
             android:exported="false"
-            android:theme="@style/Theme.HiltAndroidSample" />
+            android:theme="@style/Theme.App.Login" />
     </application>
 
 </manifest>

@@ -7,7 +7,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,20 +18,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.kethu.raj.uikit.components.atoms.CustomText
-import com.kethu.raj.uikit.components.molecules.inputs.CustomTextField
+import com.kethu.raj.uikit.components.atoms.CustomTextField
 import com.kethu.raj.uikit.components.molecules.inputs.textfield.properties.InputListeners
 import com.kethu.raj.uikit.components.molecules.inputs.textfield.properties.InputProperties
 import com.kethu.raj.uikit.ui.theme.ColorInputsPlaceholder
 import com.kethu.raj.uikit.ui.theme.ColorSemanticErrorTwo
 import com.kethu.raj.uikit.ui.theme.LocalAppUiTheme
 import com.kethu.raj.uikit.utils.CONST_ONE
-import com.kethu.raj.uikit.utils.DEFAULT_WEIGHT_ONE
 import com.kethu.raj.uikit.utils.KeyboardVisibilityObserver
-import com.kethu.uikit.components.atoms.uidatamodels.TextFieldUiDataModel
+import com.kethu.raj.uikit.components.atoms.uidatamodels.TextFieldUiDataModel
 import com.kethu.uikit.components.atoms.uidatamodels.TextUiDataModel
-import com.kethu.raj.uikit.ui.theme.Dimens.SizeSpacingMedium
 
 /**
  * Author: Kethu Yerramma
@@ -75,6 +73,7 @@ internal fun BaseInputTextField(
             }
         }
         Row(
+            horizontalArrangement = horizontalArrangement,
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
                 .border(
@@ -93,14 +92,13 @@ internal fun BaseInputTextField(
             prefix?.invoke()
             CustomTextField(
                 modifier = Modifier
-                    .weight(DEFAULT_WEIGHT_ONE)
                     .onFocusChanged { focus ->
                         isFocused = focus.isFocused
                         listeners.onFocused.invoke(isFocused)
                     },
                 adibTextFieldUiModel = TextFieldUiDataModel(
                     text = text,
-                    textStyle = textStyle,
+                    textStyle = textStyle.copy(textDecoration = TextDecoration.None),
                     enabled = !isSelectable,
                     readOnly = isSelectable,
                     maxLines = maxLines,
@@ -118,12 +116,11 @@ internal fun BaseInputTextField(
                         CustomText(
                             properties = TextUiDataModel(
                                 text = hint.orEmpty(),
-                                textStyle = textStyle.copy(color = ColorInputsPlaceholder)
+                                textStyle = textStyle.copy(color = LocalAppUiTheme.current.backgroundColor)
                             )
                         )
-                    } else {
-                        innerTextField()
                     }
+                    innerTextField()
                 },
                 onValueChange = { inputText ->
                     if (!isSelectable && (inputText.isEmpty() || regex == null || inputText.length <= inputLength && regex?.matches(

@@ -1,9 +1,10 @@
-package com.kethu.uikit.components.atoms.uidatamodels
+package com.kethu.raj.uikit.components.atoms.uidatamodels
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.VisualTransformation
 import com.kethu.raj.uikit.components.atoms.properties.TextFieldProperties
 import com.kethu.raj.uikit.ui.theme.ColorBorder
@@ -17,7 +18,10 @@ data class TextFieldUiDataModel(
     override val readOnly: Boolean = false,
     override val maxLines: Int = Int.MAX_VALUE,
     override val singleLine: Boolean = maxLines == CONST_ONE,
-    override val keyboardOptions: KeyboardOptions = KeyboardOptions.Companion.Default,
+    override val keyboardOptions: KeyboardOptions = KeyboardOptions.Companion.Default.copy(
+        autoCorrectEnabled = false,
+        capitalization = KeyboardCapitalization.None
+    ),
     override val keyboardActions: KeyboardActions = KeyboardActions.Companion.Default,
     override val visualTransformation: VisualTransformation = VisualTransformation.Companion.None,
     override val backgroundColor: Color = Color.Companion.Unspecified,

@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import com.raj.kethu.theme.AppUiTheme
 
 abstract class BaseComposeActivity<V : BaseViewModel> : ComponentActivity() {
 

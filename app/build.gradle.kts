@@ -72,14 +72,8 @@ dependencies {
 
     // custom modules
     implementation(project(":base"))
-  //  implementation(project(":uikit"))
     implementation(project(":auth"))
     implementation(project(":dashboard"))
-
-    // data store
-  /*  implementation (libs.androidx.datastore.preferences)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)*/
 
 
     testImplementation(libs.junit)
