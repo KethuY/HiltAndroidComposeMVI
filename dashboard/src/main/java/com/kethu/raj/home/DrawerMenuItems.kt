@@ -2,6 +2,7 @@ package com.kethu.raj.home
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -38,8 +39,8 @@ import com.kethu.raj.uikit.components.atoms.uidatamodels.ImageUiDataModel
 import com.kethu.raj.uikit.components.molecules.toolbar.UiToolbarCustomActions
 import com.kethu.raj.uikit.ui.theme.ColorBannersInfoBg
 import com.kethu.raj.uikit.ui.theme.LocalAppUiTheme
+import com.kethu.raj.uikit.ui.theme.Style14CaptionRegular
 import com.kethu.raj.uikit.ui.theme.Style16BodyRegular
-import com.kethu.raj.uikit.ui.theme.SurfaceBg
 import com.kethu.raj.uimodels.ToolbarUiDataModel
 import com.kethu.uikit.components.atoms.uidatamodels.TextUiDataModel
 import kotlinx.coroutines.CoroutineScope
@@ -103,6 +104,7 @@ internal fun DrawerMenuItems(
         drawerState = drawerState
     ) {
         Scaffold(
+            modifier = Modifier.padding(horizontal = 16.dp),
             containerColor = ColorBannersInfoBg.copy(alpha = 0.2f),
             topBar = {
                 UiToolbarCustomActions(
@@ -189,7 +191,10 @@ private fun MenuItems(
 
 @Composable
 private fun ProfileIconSection(onProfileIconClick: () -> Unit = {}) {
-    Row(modifier = Modifier.plainClick(onProfileIconClick)) {
+    Row(
+        modifier = Modifier.plainClick(onProfileIconClick),
+        horizontalArrangement = Arrangement.Center
+    ) {
         CustomImage(
             modifier = Modifier
                 .padding(start = 16.dp)
@@ -200,15 +205,24 @@ private fun ProfileIconSection(onProfileIconClick: () -> Unit = {}) {
             )
         )
         Spacer(Modifier.width(48.dp))
-        CustomImage(
-            modifier = Modifier
-                .clip(RoundedCornerShape(30.dp))
-                .size(60.dp)
-                .border(3.dp, Color.White, shape = RoundedCornerShape(30.dp)),
-            properties = ImageUiDataModel(
-                src = "https://data.sandbox.directory.openfinance.ae/logos/73423662-b345-453e-a54b-2f9115a6a45d/softwarestatements/1a703edb-b138-4fae-99aa-8348d418f296.png",
+        Column {
+            CustomImage(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(30.dp))
+                    .size(60.dp)
+                    .border(3.dp, Color.White, shape = RoundedCornerShape(30.dp)),
+                properties = ImageUiDataModel(
+                    src = "https://data.sandbox.directory.openfinance.ae/logos/73423662-b345-453e-a54b-2f9115a6a45d/softwarestatements/1a703edb-b138-4fae-99aa-8348d418f296.png",
+                )
             )
-        )
+            Spacer(Modifier.height(8.dp))
+            CustomText(
+                properties = TextUiDataModel(
+                    text = "Jhon Do",
+                    textStyle = Style14CaptionRegular.copy(Color.White)
+                )
+            )
+        }
     }
 }
 
